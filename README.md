@@ -1,4 +1,4 @@
-# Supreme Casino – Demo de Jogos de Cassino em React + TypeScript
+# Konoshi's Casino – Demo de Jogos de Cassino em React + TypeScript
  
 
 Um **projeto demo interativo** de um cassino online com três jogos totalmente funcionais:
