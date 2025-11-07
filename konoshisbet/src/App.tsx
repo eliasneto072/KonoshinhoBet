@@ -6,7 +6,7 @@ import Hero from "./components/Hero";
 import GameShowcase from "./components/GameShowcase";
 import Footer from "./components/Footer";
 import SlotMachine from "./components/SlotMachine";
-import GoldenDice from "./components/GolderDice";
+import GoldenDice from "./components/GoldenDice";
 import RouletteRoyale from "./components/RouletteRoyale";
 import LoginModal from "./components/LoginModal";
 import Mines from "./components/Mines"; // 👈 novo import
