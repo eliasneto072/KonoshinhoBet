@@ -46,8 +46,8 @@ Tudo construído com **React + TypeScript**, estilizado com **CSS puro** e efeit
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/supreme-casino.git
-cd supreme-casino
+git clone (https://github.com/ian960/KonoshinhoBet/edit/main/README.md)
+cd KonoshinhoBet
 
 # 2. Instale as dependências
 npm install
