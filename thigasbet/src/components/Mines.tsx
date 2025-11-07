@@ -17,6 +17,7 @@ export default function Mines() {
   const [message, setMessage] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [bombCount, setBombCount] = useState(5);
+  const [hovered, setHovered] = useState<[number, number] | null>(null);
 
   // Gera o tabuleiro novo
   function generateGrid(): Cell[][] {
@@ -77,28 +78,28 @@ export default function Mines() {
 
   // estilos simples
   const container: React.CSSProperties = {
-    maxWidth: 600,
+    maxWidth: 700,
     margin: "2rem auto",
     textAlign: "center",
     color: "#fff",
     background: "linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.25))",
-    padding: "1.5rem",
-    borderRadius: 12,
-    boxShadow: "0 8px 30px rgba(0,0,0,0.6)",
+    padding: "2rem",
+    borderRadius: 16,
+    boxShadow: "0 8px 40px rgba(0,0,0,0.7)",
   };
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
-    gridTemplateColumns: "repeat(5, 80px)",
-    gap: 10,
+    gridTemplateColumns: "repeat(5, 100px)",
+    gap: 12,
     justifyContent: "center",
     marginTop: 20,
   };
 
-  const cellStyle = (cell: Cell): React.CSSProperties => ({
-    width: 80,
-    height: 80,
-    fontSize: 22,
+  const cellStyle = (cell: Cell, x: number, y: number): React.CSSProperties => ({
+    width: 100,
+    height: 100,
+    fontSize: 36,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -106,17 +107,20 @@ export default function Mines() {
       ? cell.isBomb
         ? "crimson"
         : "rgba(255,215,0,0.4)"
-      : "rgba(0,0,0,0.4)",
-    border: "1px solid rgba(255,255,255,0.15)",
-    borderRadius: 10,
+      : hovered && hovered[0] === x && hovered[1] === y
+        ? "rgba(255,0,0,0.25)" // hover vermelho translúcido
+        : "rgba(0,0,0,0.4)",
+    border: "1px solid rgba(255,255,255,0.2)",
+    borderRadius: 12,
     cursor: gameOver || cell.revealed ? "default" : "pointer",
     fontWeight: 600,
+    transition: "background 0.2s ease, transform 0.15s ease",
   });
 
   const btnStyle: React.CSSProperties = {
     marginTop: 18,
-    padding: "0.8rem 1.6rem",
-    fontSize: 16,
+    padding: "1rem 2rem",
+    fontSize: 18,
     borderRadius: 10,
     border: "none",
     cursor: "pointer",
@@ -127,22 +131,38 @@ export default function Mines() {
 
   return (
     <div style={container}>
-      <h2>💎 Mines Game</h2>
-      <p>Créditos: <strong>{credits}</strong> — Aposta: <strong>{bet}</strong></p>
+      <h2> Mines </h2>
+      <p>
+        Créditos: <strong>{credits}</strong> — Aposta: <strong>{bet}</strong>
+      </p>
       <p>Bombas: {bombCount}</p>
 
       <div style={gridStyle}>
         {grid.map((row, x) =>
           row.map((cell, y) => (
-            <div key={`${x}-${y}`} style={cellStyle(cell)} onClick={() => handleCellClick(x, y)}>
-              {cell.revealed ? (cell.isBomb ? "💣" : `+${cell.value}`) : "❓"}
+            <div
+              key={`${x}-${y}`}
+              style={cellStyle(cell, x, y)}
+              onClick={() => handleCellClick(x, y)}
+              onMouseEnter={() => !cell.revealed && setHovered([x, y])}
+              onMouseLeave={() => setHovered(null)}
+            >
+              {cell.revealed
+                ? cell.isBomb
+                  ? "💣"
+                  : cell.value > 50
+                    ? "💎"
+                    : "🪙"
+                : ""}
             </div>
           ))
         )}
       </div>
 
-      <div style={{ marginTop: 20, display: "flex", gap: 10, justifyContent: "center" }}>
-        <button style={btnStyle} onClick={handleNewGame}>Novo Jogo</button>
+      <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "center" }}>
+        <button style={btnStyle} onClick={handleNewGame}>
+          Novo Jogo
+        </button>
         <button
           style={{ ...btnStyle, background: "#444", color: "#fff" }}
           onClick={() => {
@@ -154,9 +174,9 @@ export default function Mines() {
         </button>
       </div>
 
-      <p style={{ marginTop: 12, color: "#ffd" }}>{message}</p>
+      <p style={{ marginTop: 16, color: "#ffd" }}>{message}</p>
 
-      <small style={{ display: "block", marginTop: 8, color: "#bdb" }}>
+      <small style={{ display: "block", marginTop: 10, color: "#bdb" }}>
         Clique em um quadrado para revelar. Evite as bombas e ganhe dinheiro!
       </small>
     </div>
