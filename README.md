@@ -14,8 +14,7 @@ Tudo construído com **React + TypeScript**, estilizado com **CSS puro** e efeit
 ## Funcionalidades
 
 - Interface responsiva com tema de cassino luxuoso
-- Seleção de jogos com destaque visual
-- Sistema de créditos compartilhado (inicia com 1000)
+- Seleção de jogos com destaque visual 
 - Apostas ajustáveis
 - Animações realistas (giro, rolagem, dados)
 - Mensagens de feedback em tempo real
@@ -95,10 +94,7 @@ Regras:
 
 0 → Jackpot x15
 Números pares → x2
-Ímpares → perda
-
-Animação de giro com cubic-bezier
-
+Ímpares → perda 
 
  
 
