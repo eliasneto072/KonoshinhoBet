@@ -12,7 +12,7 @@ export default function Header({ user, onLoginClick, onLogout }: HeaderProps) {
 
   return (
     <header className="header">
-      <h1 className="logo">Supreme Casino</h1>
+      <h1 className="logo">Konoshi's Casino</h1>
       <button
         className="menu-toggle"
         onClick={() => setIsMenuOpen(!isMenuOpen)}

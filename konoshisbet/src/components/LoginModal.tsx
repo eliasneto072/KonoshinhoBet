@@ -61,7 +61,7 @@ export default function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>{isRegister ? "Crie sua conta" : "Entre no Supreme Casino"}</h2>
+          <h2>{isRegister ? "Crie sua conta" : "Entre no Konoshi's Casino"}</h2>
           <p style={{ fontSize: "0.9rem", color: "#ffd" }}> 
           </p>
         </div>
